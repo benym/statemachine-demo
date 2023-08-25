@@ -14,7 +14,7 @@ public interface ActionService {
     /**
      * 通用审核通过/驳回执行动作
      * 覆盖审核正向流程，以及驳回流程
-     * 已申请->爸爸同意->妈妈统一
+     * 已申请->爸爸同意->妈妈同意
      * 已申请->爸爸不同意
      * 爸爸同意->妈妈不同意
      *
@@ -27,5 +27,5 @@ public interface ActionService {
      *
      * @return Action
      */
-    Action<AuditState, AuditEvent, AuditContext> closeAction();
+    Action<AuditState, AuditEvent, AuditContext> doneAction();
 }

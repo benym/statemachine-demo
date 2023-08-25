@@ -9,4 +9,6 @@ import com.example.statemachine.pojo.dto.AuditDTO;
 public interface AuditDao {
 
     AuditDTO selectById(Long id);
+
+    void updateAuditStatus(String auditStatus, Long id);
 }

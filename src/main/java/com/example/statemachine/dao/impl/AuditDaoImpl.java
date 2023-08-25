@@ -1,6 +1,7 @@
 package com.example.statemachine.dao.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.statemachine.dao.AuditDao;
 import com.example.statemachine.mapper.AuditMapper;
 import com.example.statemachine.pojo.domain.AuditDO;
@@ -8,6 +9,7 @@ import com.example.statemachine.pojo.dto.AuditDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 /**
  * @author benym
@@ -27,6 +29,20 @@ public class AuditDaoImpl implements AuditDao {
             AuditDTO auditDTO = new AuditDTO();
             BeanUtils.copyProperties(auditDO, auditDTO);
             return auditDTO;
+        } catch (Exception e) {
+            throw new RuntimeException("未知异常", e);
+        }
+    }
+
+    @Override
+    public void updateAuditStatus(String auditStatus, Long id) {
+        try {
+            UpdateWrapper<AuditDO> updateWrapper = new UpdateWrapper<>();
+            updateWrapper.lambda()
+                    .set(AuditDO::getAuditState, auditStatus)
+                    .eq(AuditDO::getId, id);
+            int row = auditMapper.update(null, updateWrapper);
+            Assert.isTrue(row > 0, "更新状态失败");
         } catch (Exception e) {
             throw new RuntimeException("未知异常", e);
         }

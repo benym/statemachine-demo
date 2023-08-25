@@ -20,7 +20,7 @@ public class ConditionServiceImpl implements ConditionService {
     }
 
     @Override
-    public Condition<AuditContext> closeCondition() {
+    public Condition<AuditContext> doneCondition() {
         return context -> {
             System.out.println(1);
             return true;

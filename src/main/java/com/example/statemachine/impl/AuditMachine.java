@@ -39,9 +39,9 @@ public class AuditMachine implements StateMachineStrategy {
      * | 爸爸同意    | 妈妈同意 | 审核通过    | passOrRejectCondition | passOrRejectAction |
      * | 已申请     | 爸爸不同意 | 审核驳回    | passOrRejectCondition | passOrRejectAction |
      * | 爸爸同意   | 妈妈不同意 | 审核驳回    | passOrRejectCondition | passOrRejectAction |
-     * | 已申请    | 已完成状态    | 已完成        | closeCondition        | closeAction        |
-     * | 爸爸同意  | 已完成状态    | 已完成        | closeCondition        | closeAction        |
-     * | 妈妈同意  | 已完成状态    | 已完成        | closeCondition        | closeAction        |
+     * | 已申请    | 已完成状态    | 已完成        | doneCondition        | doneAction        |
+     * | 爸爸同意  | 已完成状态    | 已完成        | doneCondition        | doneAction        |
+     * | 妈妈同意  | 已完成状态    | 已完成        | doneCondition        | doneAction        |
      *
      * @return StateMachine stateMachine
      */
@@ -74,8 +74,8 @@ public class AuditMachine implements StateMachineStrategy {
         builder.externalTransitions().fromAmong(AuditState.APPLY, AuditState.DAD_PASS, AuditState.MOM_PASS)
                 .to(AuditState.DONE)
                 .on(AuditEvent.DONE)
-                .when(conditionService.closeCondition())
-                .perform(actionService.closeAction());
+                .when(conditionService.doneCondition())
+                .perform(actionService.doneAction());
         return builder.build(getMachineType());
     }
 }

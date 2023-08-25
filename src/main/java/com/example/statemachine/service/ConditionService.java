@@ -25,5 +25,5 @@ public interface ConditionService {
      *
      * @return Condition
      */
-    Condition<AuditContext> closeCondition();
+    Condition<AuditContext> doneCondition();
 }
