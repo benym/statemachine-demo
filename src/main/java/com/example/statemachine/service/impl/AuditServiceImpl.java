@@ -30,7 +30,6 @@ public class AuditServiceImpl implements AuditService {
     public void audit(AuditContext auditContext) {
         Long id = auditContext.getId();
         AuditDTO auditDTO = auditDao.selectById(id);
-        auditContext.setAuditDTO(auditDTO);
         String auditState = auditDTO.getAuditState();
         Integer auditEvent = auditContext.getAuditEvent();
         // 获取当前状态和事件

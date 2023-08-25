@@ -16,11 +16,6 @@ public class AuditContext {
     private Long id;
 
     /**
-     * auditDTO
-     */
-    private AuditDTO auditDTO;
-
-    /**
      * 事件
      */
     private Integer auditEvent;
