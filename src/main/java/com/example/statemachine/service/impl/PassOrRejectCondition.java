@@ -5,7 +5,11 @@ import com.example.statemachine.pojo.context.AuditContext;
 import org.springframework.stereotype.Component;
 
 /**
- * 已完成条件
+ * 通用通过/驳回条件
+ * 覆盖审核正向流程，以及驳回流程
+ * 已申请->爸爸同意->妈妈统一
+ * 已申请->爸爸不同意
+ * 爸爸同意->妈妈不同意
  *
  * @author benym
  * @date 2024/7/19 11:44
